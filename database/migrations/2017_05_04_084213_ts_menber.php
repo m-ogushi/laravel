@@ -28,6 +28,6 @@ class TsMenber extends Migration
      */
     public function down()
     {
-         Schema::drop('ogushi');
+         Schema::drop('ts');
     }
 }
