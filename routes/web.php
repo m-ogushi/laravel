@@ -11,8 +11,12 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+//Route::get('/', function () {
+//    return view('welcome');
+//});
+Route::get('/', function()
+{
+    return View::make('hello', array('name'=>'8miricd'));
 });
 
 Route::get('foo', function () {
@@ -20,3 +24,6 @@ Route::get('foo', function () {
 });
 
 Route::get('/test', 'TestController@index');
+
+Route::get('/name/{name}', 'TestController@name');
+

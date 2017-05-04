@@ -11,4 +11,10 @@ class TestController extends Controller
     //  return 'Hello world';
    return view('test');
   }
+  
+  public function name($userName)
+  {
+  $urname = "ogushi";
+   return view('testname',compact('urname'));
+  }
 }
