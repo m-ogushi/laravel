@@ -13,7 +13,7 @@ class TsMenber extends Migration
      */
     public function up()
     {
-            Schema::create('ts', function($table)
+        Schema::create('ts', function($table)
         {
             $table->increments('id');
 
@@ -28,6 +28,6 @@ class TsMenber extends Migration
      */
     public function down()
     {
-         Schema::drop('ts');
+        Schema::drop('ts');
     }
 }
