@@ -1,6 +1,9 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use Goodby\CSV\Import\Standard\Lexer;
+use Goodby\CSV\Import\Standard\Interpreter;
+use Goodby\CSV\Import\Standard\LexerConfig;
 
 class TsNemberCsvSeeder extends Seeder
 {
@@ -14,10 +17,12 @@ class TsNemberCsvSeeder extends Seeder
 
     public function run()
     {
+        DB::table('ts')->truncate();
+
         $this->command->info('[Start] import data.');
 
         $config = new LexerConfig();
-        // セパレーター指定、"\t"を指定すればtsvファイルとかも取り込めます
+        // セパレーター指定、
         $config->setDelimiter(",");
         $lexer = new Lexer($config);
         $interpreter = new Interpreter();
@@ -26,15 +31,14 @@ class TsNemberCsvSeeder extends Seeder
             // 各列のデータを取得
 //            $first = $row[0];
 //            $second = $row[1];
-
             foreach($rows as $row ){
                 DB::table('ts')->insert([
-                    'name' => $row[0],
+                    'name' => $row,
                 ]); 
             }
         });
 
-        $lexer->parse(app_path() . self::CSV_FILENAME, $interpreter);
+        $lexer->parse(/*app_path() .*/ self::CSV_FILENAME, $interpreter);
 
         $this->command->info('[End] import data.');
     }
