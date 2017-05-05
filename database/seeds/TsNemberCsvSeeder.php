@@ -38,7 +38,7 @@ class TsNemberCsvSeeder extends Seeder
             }
         });
 
-        $lexer->parse(/*app_path() .*/ self::CSV_FILENAME, $interpreter);
+        $lexer->parse(self::CSV_FILENAME, $interpreter);
 
         $this->command->info('[End] import data.');
     }
