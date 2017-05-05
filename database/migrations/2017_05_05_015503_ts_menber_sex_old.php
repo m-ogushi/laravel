@@ -21,7 +21,7 @@ class TsMenberSexOld extends Migration
                 {
                     $table->integer('sex')->nullable();
                 }
-                if(!(Schema::hasColumn('ts','sex')))
+                if(!(Schema::hasColumn('ts','old')))
                 {
                     $table->integer('old')->nullable();
                 }
