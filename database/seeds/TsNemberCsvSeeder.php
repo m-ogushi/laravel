@@ -29,8 +29,8 @@ class TsNemberCsvSeeder extends Seeder
         $interpreter->addObserver(function(array $rows) 
         {
             // 各列のデータを取得
-//            $first = $row[0];
-//            $second = $row[1];
+            // $first = $row[0];
+            // $second = $row[1];
             foreach($rows as $row ){
                 DB::table('ts')->insert([
                     'name' => $row,
