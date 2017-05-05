@@ -17,8 +17,14 @@ class TsMenberSexOld extends Migration
         {
             Schema::table('ts', function($table)
             {
-                $table->integer('sex')->nullable();
-                $table->integer('old')->nullable();
+                if(!(Schema::hasColumn('ts','sex')))
+                {
+                    $table->integer('sex')->nullable();
+                }
+                if(!(Schema::hasColumn('ts','sex')))
+                {
+                    $table->integer('old')->nullable();
+                }
             });
         }
     }
@@ -29,18 +35,18 @@ class TsMenberSexOld extends Migration
      */
     public function down()
     {
-        if(Schema::hasColumn('ts','sex'))
+        if(Schema::hasTable('ts'))
         {
             Schema::table('ts', function($table)
-            {
-                $table->dropColumn('sex');
-            });
-        }
-        if(Schema::hasColumn('ts','old'))
-        {
-            Schema::table('ts', function($table)
-            {
-                $table->dropColumn('old');
+            {          
+                if(Schema::hasColumn('ts','sex'))
+                {
+                    $table->dropColumn('sex');
+                }
+                if(Schema::hasColumn('ts','old'))
+                {
+                    $table->dropColumn('old');
+                }
             });
         }
     }
