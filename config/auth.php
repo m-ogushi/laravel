@@ -15,7 +15,7 @@ return [
 
     'defaults' => [
         'guard' => 'web',
-        'passwords' => 'users',
+        'passwords' => 'login',
     ],
 
     /*
@@ -38,12 +38,12 @@ return [
     'guards' => [
         'web' => [
             'driver' => 'session',
-            'provider' => 'users',
+            'provider' => 'login',
         ],
 
         'api' => [
             'driver' => 'token',
-            'provider' => 'users',
+            'provider' => 'login',
         ],
     ],
 
@@ -69,10 +69,14 @@ return [
             'driver' => 'eloquent',
             'model' => App\User::class,
         ],
+        'login' => [
+            'driver' => 'eloquent',
+            'model'  => App\Login::class,
+        ],
 
-        // 'users' => [
+        // 'usasasa' => [
         //     'driver' => 'database',
-        //     'table' => 'users',
+        //     'table' => 'login',
         // ],
     ],
 
@@ -99,6 +103,12 @@ return [
         'users' => [
             'provider' => 'users',
             'table' => 'password_resets',
+            'expire' => 60,
+        ],
+
+        'login' => [
+            'provider' => 'login',
+            'table' => 'login',
             'expire' => 60,
         ],
     ],

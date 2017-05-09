@@ -5,12 +5,10 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class User extends Authenticatable
+class Login extends Authenticatable
 {
     use Notifiable;
-    echo "test";
-    error_log("login",3,"/home/mogushi/laravel/ogushi/login_test.log"); 
-    
+    error_log("login",3,"/home/mogushi/laravel/ogushi/login_test.log");
     /**
      * The attributes that are mass assignable.
      *
