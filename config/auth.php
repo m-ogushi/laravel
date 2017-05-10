@@ -65,19 +65,10 @@ return [
     */
 
     'providers' => [
-        'users' => [
-            'driver' => 'eloquent',
-            'model' => App\User::class,
-        ],
         'login' => [
             'driver' => 'eloquent',
-            'model'  => App\Login::class,
+            'model'  => App\Eloquents\Mysql\Login::class,
         ],
-
-        // 'usasasa' => [
-        //     'driver' => 'database',
-        //     'table' => 'login',
-        // ],
     ],
 
     /*

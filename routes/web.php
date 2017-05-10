@@ -10,24 +10,17 @@
 | to using a Closure or controller method. Build something great!
 |
 */
-
-//Route::get('/', function () {
-//    return view('welcome');
-//});
-Route::get('/', function()
+Route::group( [ 'namespace' => 'Web' ], function()
 {
-    return View::make('hello', array('name'=>'8miricd'));
+    Route::group( [ 'namespace' => 'Authority' ], function()
+    {
+        // ログイン
+        Route::get( 'login',  'AuthController@signIn' );
+        Route::post( 'login', 'AuthController@signIn' );
+        // ログアウト
+        Route::get( 'logout', 'AuthController@signOut' );
+    });
+
+    Route::get( '/', 'TopController@index' );
+    Route::post( '/', 'TopController@index' );
 });
-
-Route::get('foo', function () {
-    return 'Hello World';
-});
-
-Route::get('/test', 'TestController@index');
-
-Route::get('/name/{name}', 'TestController@name');
-
-
-Auth::routes();
-
-Route::get('/home', 'HomeController@index');
