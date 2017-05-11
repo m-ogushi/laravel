@@ -9,7 +9,7 @@ class TestController extends Controller
   public function index()
   {
     //  return 'Hello world';
-   return view('test');
+   return view('test_twig');
   }
   
   public function name($userName)

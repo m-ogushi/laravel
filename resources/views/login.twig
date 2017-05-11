@@ -1,3 +1,13 @@
+//Insert this on your head section
+<!-- CSRF Token -->
+<meta name="csrf-token" content="{{ csrf_token() }}">
+
+<!-- Scripts -->
+<script>
+    window.Laravel = <?php echo json_encode([
+        'csrfToken' => csrf_token(),
+    ]); ?>
+</script>
 <form action="" method="post">
 <input type="hidden" name="mode" value="login">
 <input type="hidden" name="_token" value="{{ csrf_token() }}">
