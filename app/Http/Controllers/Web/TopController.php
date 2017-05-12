@@ -22,11 +22,9 @@ class TopController extends CommonController
 
     public function index( Request $request )
     {
-        
-        $users =  Attendancelist::get_data(); 
-
+        $users =  Attendancelist::get_data();                               
+       
         return view('index', ['users' => $users]);
-
         // ログインチェック
         self::isNotLoginRedirect();
 
