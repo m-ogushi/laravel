@@ -1,5 +1,9 @@
 ログインしたトップページ
 
 <ul>
-{{ users.name  }}
+<ul>
+{% for item in users %}
+<li>{{ item.name }}</li>
+{% endfor %}
+</ul>
 </ul>

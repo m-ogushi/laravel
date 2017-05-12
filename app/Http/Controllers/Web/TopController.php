@@ -24,7 +24,6 @@ class TopController extends CommonController
         // ログインチェック
        // echo "test";
         $users = DB::select('select * from attendancelist');
-        var_dump($users);
         return view('index', ['users' => $users]);
         self::isNotLoginRedirect();
 
