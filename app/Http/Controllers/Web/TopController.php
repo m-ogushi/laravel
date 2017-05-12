@@ -3,6 +3,7 @@ namespace App\Http\Controllers\Web;
 
 #use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use App\Eloquents\Mysql\Attendancelist;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller as CommonController;
 
@@ -21,10 +22,12 @@ class TopController extends CommonController
 
     public function index( Request $request )
     {
-        // ログインチェック
-       // echo "test";
-        $users = DB::select('select * from attendancelist');
+        
+        $users =  Attendancelist::get_data(); 
+
         return view('index', ['users' => $users]);
+
+        // ログインチェック
         self::isNotLoginRedirect();
 
         return view( 'index', [] );
