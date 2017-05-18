@@ -29,7 +29,7 @@ class TopController extends CommonController
     }
     public function selectMember( )
     {
-        $users =  AttendanceList::decideMenber();                               
+        $users =  AttendanceList::decideMenber(); 
         return view('select', ['users' => $users]);
     }
     public function updateMember( Request $request){
