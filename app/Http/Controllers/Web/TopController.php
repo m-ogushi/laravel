@@ -29,10 +29,10 @@ class TopController extends CommonController
         self::isNotLoginRedirect();
 
         return view( 'index', [] );
-        echo "test";
+        //echo "test";
         //$users = DB::select('select * from attendancelist');
-        $user = DB::table('attendancelist')->count();
-        var_dump($user);
+        //$user = DB::table('attendancelist')->count();
+        //var_dump($user);
     }
     public function selectMember( )
     {
