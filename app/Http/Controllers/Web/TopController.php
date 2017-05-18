@@ -31,8 +31,6 @@ class TopController extends CommonController
     {
         $users =  AttendanceList::decideMenber();                               
         return view('select', ['users' => $users]);
-        // ログインチェック
-       
     }
     public function updateMember( Request $request){
         //現在実装中
