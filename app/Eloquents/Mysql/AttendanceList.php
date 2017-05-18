@@ -14,7 +14,7 @@ class AttendanceList extends Mysql
 
      static function confirmMember($id)
      {
-         現在実装中
+         //現在実装中
          //return self::take(1)->orderByRaw('RAND()')->get();
          //Self::where('id','=',$id)->update(['end'=>1]);
      }
