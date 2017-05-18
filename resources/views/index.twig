@@ -1,5 +1,9 @@
 ログインしたトップページ
 
+<form action="selectMember" method="post">
+<input class="btn-login" type="submit" value="ログイン"/></a>
+<input type="hidden" name="_token" value="{{ csrf_token() }}">
+</form>
 <ul>
 <ul>
 {% for item in users %}

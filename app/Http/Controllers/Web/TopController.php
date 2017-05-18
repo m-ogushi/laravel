@@ -3,7 +3,7 @@ namespace App\Http\Controllers\Web;
 
 #use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-use App\Eloquents\Mysql\Attendancelist;
+use App\Eloquents\Mysql\AttendanceList;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller as CommonController;
 
@@ -22,9 +22,9 @@ class TopController extends CommonController
 
     public function index( Request $request )
     {
-        $users =  Attendancelist::get_data();                               
+        $users =  AttendanceList::decideMenber();                               
        
-        return view('index', ['users' => $users]);
+        //return view('index', ['users' => $users]);
         // ログインチェック
         self::isNotLoginRedirect();
 
@@ -34,4 +34,15 @@ class TopController extends CommonController
         $user = DB::table('attendancelist')->count();
         var_dump($user);
     }
+    public function selectMember( )
+    {
+        echo "test";
+        $users =  AttendanceList::decideMenber();                               
+        //return redirect('/')->with('users', $users);
+        return view('select', ['users' => $users]);
+        // ログインチェック
+       
+    }
+    public function updateMember( ){
+    } 
 }

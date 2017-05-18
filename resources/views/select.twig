@@ -1,0 +1,18 @@
+ログインしたトップページ
+
+<form action="selectMember" method="post">
+<input class="btn-login" type="submit" value="ログイン"/></a>
+<input type="hidden" name="_token" value="{{ csrf_token() }}">
+</form>
+<ul>
+{% for item in users %}
+{% set name = item %}
+<li>{{ name.name }}</li>
+{% endfor %}
+</ul>
+
+<form action="updateMember" method="post">
+<input class="btn-login" type="submit" value="ログイン"/></a>
+<input type="hidden" name="memberId" value="{{ name.name}}">
+<input type="hidden" name="_token" value="{{ csrf_token() }}">
+</form>
