@@ -8,8 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Mysql extends Model
 {
-    const CREATED_AT = 'regist_user_date';
-    const UPDATED_AT = 'update_user_date';
+    const CREATED_AT = 'regist_date';
+    const UPDATED_AT = 'update_date';
 
     public $timestamps = TRUE;
 

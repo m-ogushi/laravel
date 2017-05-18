@@ -1,7 +1,11 @@
 ログインしたトップページ
 
 <form action="member/select" method="post">
-<input class="btn-login" type="submit" value="社員情報取得"/></a>
+<p><br>
+<input type="radio" name="already" value="1"> まだの人のみ
+<input type="radio" name="already" value="0"> 全員
+</p>
+<input class="btn-login" type="submit" value="抽選開始"/></a>
 <input type="hidden" name="_token" value="{{ csrf_token() }}">
 </form>
 <ul>
@@ -11,3 +15,7 @@
 {% endfor %}
 </ul>
 </ul>
+<form action="member/update" method="post">
+<input class="btn-login" type="submit" value="履歴リセット"/></a>
+<input type="hidden" name="_token" value="{{ csrf_token() }}">
+</form>

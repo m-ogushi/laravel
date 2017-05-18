@@ -8,10 +8,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller as CommonController;
 
 class TopController extends CommonController
-{
-    /**
-     * コンストラクタ
-     *
+{ /** * コンストラクタ *
      * @param void
      * @return void
      */
@@ -27,16 +24,31 @@ class TopController extends CommonController
 
         return view( 'index', [] );
     }
-    public function selectMember( )
+    public function selectMember(Request $request)
     {
-        $users =  AttendanceList::decideMenber(); 
-        return view('select', ['users' => $users]);
+        if( null !== $request->input('already') )
+        {
+            $already = $request->input('already');
+            echo $already;
+            $users =  AttendanceList::decideMenber($already); 
+            return view('select', ['users' => $users]);
+        }
+        return view('select');
     }
-    public function updateMember( Request $request){
+    public function updateMember(Request $request)
+    {
         //現在実装中
         $input = $request->all(); 
+        if( $request->input('memberId') == NULL )
+        {
+            AttendanceList::resetMember();
+            return redirect( '/' );
+
+        }
         $id = $request->input('memberId');
-        var_dump($input);
-        $users =  AttendanceList::confirmMember($id);                               
+        var_dump( $id );
+        $users =  AttendanceList::confirmMember($id);
+        var_dump( $input );
+        return redirect( 'member/select' )->with('status', $request->input('membername'));
     } 
 }
