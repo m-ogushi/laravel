@@ -10,4 +10,11 @@ class AttendanceList extends Mysql
      {
          return self::take(1)->orderByRaw('RAND()')->get();
      }
+
+
+     static function confirmMember($id)
+     {
+         //return self::take(1)->orderByRaw('RAND()')->get();
+         //Self::where('id','=',$id)->update(['end'=>1]);
+     }
 }

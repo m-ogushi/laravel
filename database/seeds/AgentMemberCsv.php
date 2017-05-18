@@ -14,7 +14,7 @@ class AgentMemberCsv extends Seeder
      */
 
     
-    const CSV_FILENAME = "agentmember.csv";
+    const CSV_FILENAME = "storage/agentmember.csv";
 
     public function run()
     {
@@ -30,10 +30,10 @@ class AgentMemberCsv extends Seeder
         $interpreter->addObserver(function(array $rows) 
         {
             // 各列のデータを取得
-                DB::table('attendancelist')->insert([
-                    'name' => $rows[0],
-                    'section' => $rows[1]
-                ]); 
+            DB::table('attendancelist')->insert([
+                'name' => $rows[0],
+                'section' => $rows[1]
+            ]); 
         });
         
 

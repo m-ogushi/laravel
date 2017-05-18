@@ -1,18 +1,19 @@
 ログインしたトップページ
 
-<form action="selectMember" method="post">
-<input class="btn-login" type="submit" value="ログイン"/></a>
+<form action="" method="post">
+<input class="btn-login" type="submit" value="社員情報取得"/></a>
 <input type="hidden" name="_token" value="{{ csrf_token() }}">
 </form>
 <ul>
+{% set name = [] %}
 {% for item in users %}
 {% set name = item %}
-<li>{{ name.name }}</li>
+{{ name.name }}
 {% endfor %}
 </ul>
-
-<form action="updateMember" method="post">
-<input class="btn-login" type="submit" value="ログイン"/></a>
-<input type="hidden" name="memberId" value="{{ name.name}}">
+{{ name.id }}
+<form action="update" method="post">
+<input class="btn-login" type="submit" value="社員情報更新"/></a>
+<input type="hidden" name="memberId" value="{{ name.id }}">
 <input type="hidden" name="_token" value="{{ csrf_token() }}">
 </form>
