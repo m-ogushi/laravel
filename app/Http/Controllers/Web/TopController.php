@@ -1,6 +1,7 @@
 <?php
 namespace App\Http\Controllers\Web;
 
+#use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\Eloquents\Mysql\AttendanceList;
 use Illuminate\Http\Request;
@@ -28,7 +29,9 @@ class TopController extends CommonController
     }
     public function selectMember( )
     {
+        $users =  AttendanceList::decideMenber();                               
         return view('select', ['users' => $users]);
+        // ログインチェック
        
     }
     public function updateMember( Request $request){
