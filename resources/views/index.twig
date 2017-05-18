@@ -1,5 +1,9 @@
 ログインしたトップページ
 
+<form action="member/select" method="post">
+<input class="btn-login" type="submit" value="社員情報取得"/></a>
+<input type="hidden" name="_token" value="{{ csrf_token() }}">
+</form>
 <ul>
 <ul>
 {% for item in users %}
