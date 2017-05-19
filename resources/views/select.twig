@@ -23,11 +23,11 @@
  {% set message = "スピーチする" %}
 
 {# 「スピーチする」が押された後の処理。キャンセルできるようにするため、必要な情報を変数に格納している。 #}
-{% if session('statusname') is not null %}
+{% if session( 'statusname' ) is not null %}
     {% set message = "キャンセル" %}
     {% set nowspeech = "スピーチ中!" %}
-    {% set id = session('statusid') %}
-    {% set who = session('statusname') %}
+    {% set id = session( 'statusid' ) %}
+    {% set who = session( 'statusname' ) %}
     {% set cancel = 1 %}
 {% endif %}
 {{ nowspeech }}

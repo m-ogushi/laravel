@@ -9,11 +9,9 @@
 <input type="hidden" name="_token" value="{{ csrf_token() }}">
 </form>
 <ul>
-<ul>
 {% for item in users %}
 <li>{{ item.name }}</li>
 {% endfor %}
-</ul>
 </ul>
 <form action="member/update" method="post">
 <input class="btn-login" type="submit" value="履歴リセット"/></a>

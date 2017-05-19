@@ -28,9 +28,9 @@ class TopController extends CommonController
     public function selectMember( Request $request )
     {
         //抽選条件が選択されているかどうかで、抽選処理を行うかどうかを判断する
-        if( null !== $request->input('already') )
+        if( null !== $request->input( 'already' ) )
         {
-            $already = $request->input('already');
+            $already = $request->input( 'already' );
             $users =  AttendanceList::decideMenber( $already ); 
             return view( 'select', [ 'users' => $users ] );
         }
@@ -61,7 +61,7 @@ class TopController extends CommonController
         $users =  AttendanceList::confirmMember( $id,$cancel );
         
         //「キャンセル」の場合、トップ画面に遷移する
-        if( $request->input('cancel') == 1 )
+        if( $request->input( 'cancel' ) == 1 )
         {
             return redirect( '/' );
         }
