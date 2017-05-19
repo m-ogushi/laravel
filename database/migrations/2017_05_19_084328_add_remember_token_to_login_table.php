@@ -37,9 +37,9 @@ class AddRememberTokenToLoginTable extends Migration
         {
             Schema::table( 'login', function( $table )
             {
-                if ( ( Schema::hasColumn( 'login', 'regist_user_id' ) ) )
+                if ( ( Schema::hasColumn( 'login', 'remember_token' ) ) )
                 {
-                    $table->dropColumn( 'regist_user_id' );
+                    $table->dropColumn( 'remember_token' );
                 }
             });
         }
