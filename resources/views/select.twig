@@ -1,3 +1,19 @@
+<script>
+//「スピーチする」が連続クリックされた際に、複数回カウントされないための記述
+var set=0;
+function double() 
+{
+    if(set==0)
+    { 
+        set=1; 
+    }
+    else 
+    {
+        alert("只今処理中です。\nそのままお待ちください。");
+        return false; 
+    }
+}
+</script>
 
 <form action="select" method="post">
 <p><br>
@@ -38,8 +54,8 @@
     {{ '現在' ~ end ~ "回" }}
 {% endif %}
 
-<form action="update" method="post">
-<input class="btn-login" type="submit" value= {{ message }} /></a>
+<form action="update" method="post" onSubmit="return double()" >
+<input class="btn-login" type="submit" value= {{ message }} />
 <input type="hidden" name="cancel" value="{{ cancel }}">
 <input type="hidden" name="memberId" value="{{ id }}">
 <input type="hidden" name="membername" value="{{ who }}">
