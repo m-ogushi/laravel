@@ -37,12 +37,12 @@ function check(){
 <input type="radio" name="already" value="1" checked> まだの人のみ
 <input type="radio" name="already" value="0"> 全員
 </p>
-<input class="btn-login" type="submit" value="抽選開始"/></a>
+<input class="btn-login" type="submit" value="抽選開始"/>
 <input type="hidden" name="_token" value="{{ csrf_token() }}">
 </form>
 <ul>
 {% for item in users %}
-<li>{{ item.name }}</li>
+    <li>{{ item.name }}</li>
 {% endfor %}
 </ul>
 <form action="member/update" method="post"  onSubmit="return check()" >

@@ -5,7 +5,7 @@
 <input type="radio" name="already" value="1" checked> まだの人のみ
 <input type="radio" name="already" value="0"> 全員
 </p>
-<input class="btn-login" type="submit" value="抽選開始"/></a>
+<input class="btn-login" type="submit" value="抽選開始"/>
 <input type="hidden" name="_token" value="{{ csrf_token() }}">
 </form>
 <ul>
@@ -13,8 +13,9 @@
 
 {# 抽選した人の名前やスピーチ情報などを変数に格納している。 #}
 {% for item in users %}
-{% set name = item %}
+    {% set name = item %}
 {% endfor %}
+
 {% set id = name.id %}
 {% set who = name.name %}
 {% set end = name.end %}
