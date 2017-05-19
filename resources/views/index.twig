@@ -1,5 +1,37 @@
-ログインしたトップページ
+{% if session( 'endreset' ) is not null %}
+    {% set doreset = 1 %}
+{% else %} 
+    {% set doreset = 0 %}
+{% endif %}
 
+{% block myJavascript %}
+<script type="text/javascript">
+
+window.onload = function(){
+    if( 1 == {{ doreset }} )
+    {
+        alert('リセットしました');
+    }
+}
+
+function check(){
+
+    if(window.confirm('履歴をリセットしますか？'))
+    {
+        return true; 
+    }
+    else
+    { // 「キャンセル」時の処理
+        window.alert('キャンセルされました'); 
+        return false; // 送信を中止
+
+    }
+
+}
+
+{% endblock %}  
+</script>
+ログインしたトップページ
 <form action="member/select" method="post">
 <p><br>
 <input type="radio" name="already" value="1" checked> まだの人のみ
@@ -13,7 +45,13 @@
 <li>{{ item.name }}</li>
 {% endfor %}
 </ul>
-<form action="member/update" method="post">
-<input class="btn-login" type="submit" value="履歴リセット"/></a>
+<form action="member/update" method="post"  onSubmit="return check()" >
+<input class="btn-login" type="submit" value="履歴リセット"/>
 <input type="hidden" name="_token" value="{{ csrf_token() }}">
+</form>
+
+<form action="/" method="post">
+<input class="btn-login" type="submit" value="ログアウト"/>
+<input type="hidden" name="_token" value="{{ csrf_token() }}">
+<input type="hidden" name="logout" value="logout" > 
 </form>

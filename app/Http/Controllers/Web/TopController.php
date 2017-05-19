@@ -20,6 +20,13 @@ class TopController extends CommonController
 
     public function index( Request $request )
     {
+
+        if( null !==  $request->input( 'logout' ) )
+        {
+            self::logout();
+            return Redirect::to( 'login' );
+        }
+        
         // ログインチェック
         self::isNotLoginRedirect();
 
@@ -34,7 +41,15 @@ class TopController extends CommonController
             $users =  AttendanceList::decideMenber( $already ); 
             return view( 'select', [ 'users' => $users ] );
         }
-        return view( 'select' );
+        else if( null !== $request->session()->get( 'statusid' ) )
+        { 
+            return view( 'select' );
+        }
+        //想定していないアクセスをされた場合、トップページへ遷移する
+        else
+        {
+            return redirect( '/' );
+        }
     }
     public function updateMember( Request $request )
     {
@@ -45,7 +60,7 @@ class TopController extends CommonController
         if( $request->input( 'memberId' ) == NULL )
         {
             AttendanceList::resetMember();
-            return redirect( '/' );
+            return redirect( '/' )->with( 'endreset',1 );
 
         }
 

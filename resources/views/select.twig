@@ -32,10 +32,21 @@
 {% endif %}
 {{ nowspeech }}
 {{ who }}
+<br/>
+
+{% if end is not null  %}
+    {{ '現在' ~ end ~ "回" }}
+{% endif %}
+
 <form action="update" method="post">
 <input class="btn-login" type="submit" value= {{ message }} /></a>
 <input type="hidden" name="cancel" value="{{ cancel }}">
 <input type="hidden" name="memberId" value="{{ id }}">
 <input type="hidden" name="membername" value="{{ who }}">
+<input type="hidden" name="_token" value="{{ csrf_token() }}">
+</form>
+
+<form action="/" method="post">
+ <input class="btn-login" name= "logout" type="submit" value="ログアウト"/>
 <input type="hidden" name="_token" value="{{ csrf_token() }}">
 </form>

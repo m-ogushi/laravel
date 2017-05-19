@@ -47,7 +47,8 @@ class Login extends Authenticatable
      *
      * @var array
      */
-    protected $hidden = [
-        'password', 'remember_token',
-    ];
+    //暫定的に削除
+    /*protected $hidden = [
+        'remember_token',
+    ];*/
 }
