@@ -1,4 +1,3 @@
-ログインしたトップページ
 
 <form action="select" method="post">
 <p><br>
@@ -31,9 +30,9 @@
     {% set who = session( 'statusname' ) %}
     {% set cancel = 1 %}
 {% endif %}
-{{ nowspeech }}
 {{ who }}
 <br/>
+{{ nowspeech }}
 
 {% if end is not null  %}
     {{ '現在' ~ end ~ "回" }}

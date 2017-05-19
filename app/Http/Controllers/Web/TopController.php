@@ -24,7 +24,7 @@ class TopController extends CommonController
         if( null !==  $request->input( 'logout' ) )
         {
             self::logout();
-            return Redirect::to( 'login' );
+            return redirect( 'login' );
         }
         
         // ログインチェック
