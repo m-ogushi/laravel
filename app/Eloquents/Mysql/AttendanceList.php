@@ -1,15 +1,14 @@
 <?php
 
 namespace App\Eloquents\Mysql;
-use update;
 
 class AttendanceList extends Mysql
 {
     protected $table = 'attendancelist';
 
-     static function decideMenber($already)
+     static function decideMenber( $already )
      {
-         $query = self::take(1)->orderByRaw('RAND()');
+         $query = self::take(1)->orderByRaw( 'RAND()' );
          if( $already == 1 ){
              return $query->where( 'end', 0 )->get();
          }
@@ -17,16 +16,21 @@ class AttendanceList extends Mysql
      }
 
 
-     static function confirmMember($id)
+     static function confirmMember( $id,$cancel )
      {
-         //現在実装中
-         Self::where('id','=',$id)->update(['end'=>1]);
+         if( $cancel == 1 )
+         {
+             Self::where( 'id','=',$id )->decrement( 'end',1 );
+         }else
+         {
+         Self::where( 'id','=',$id )->increment( 'end',1 );
+         }
      }
     
     
      static function resetMember()
      {
          //現在実装中
-         Self::where('end', "<>" ,0)->update( ['end'=>0] );
+         Self::where( 'end', "<>" ,0 )->update( ['end'=>0] );
      }
 }

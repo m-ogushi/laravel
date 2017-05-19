@@ -10,17 +10,32 @@
 </form>
 <ul>
 {% set name = [] %}
+
+{# 抽選した人の名前やスピーチ情報などを変数に格納している。 #}
 {% for item in users %}
 {% set name = item %}
-{{ name.name }}
 {% endfor %}
-{{ session('status') }}
+{% set id = name.id %}
+{% set who = name.name %}
+{% set end = name.end %}
+{% set cancel = 0 %}
 </ul>
-{{ name.id }}
-{{ session('status') }}
+ {% set message = "スピーチする" %}
+
+{# 「スピーチする」が押された後の処理。キャンセルできるようにするため、必要な情報を変数に格納している。 #}
+{% if session('statusname') is not null %}
+    {% set message = "キャンセル" %}
+    {% set nowspeech = "スピーチ中!" %}
+    {% set id = session('statusid') %}
+    {% set who = session('statusname') %}
+    {% set cancel = 1 %}
+{% endif %}
+{{ nowspeech }}
+{{ who }}
 <form action="update" method="post">
-<input class="btn-login" type="submit" value="スピーチする"/></a>
-<input type="hidden" name="memberId" value="{{ name.id }}">
-<input type="hidden" name="membername" value="{{ name.name }}">
+<input class="btn-login" type="submit" value= {{ message }} /></a>
+<input type="hidden" name="cancel" value="{{ cancel }}">
+<input type="hidden" name="memberId" value="{{ id }}">
+<input type="hidden" name="membername" value="{{ who }}">
 <input type="hidden" name="_token" value="{{ csrf_token() }}">
 </form>

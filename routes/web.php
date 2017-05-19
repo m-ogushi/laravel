@@ -23,8 +23,10 @@ Route::group( [ 'namespace' => 'Web' ], function()
 
     Route::get( '/', 'TopController@index' );
     Route::post( '/', 'TopController@index' );
-    Route::get( '/member/select', 'TopController@selectMember' );
-    Route::post( '/member/select', 'TopController@selectMember' );
-    Route::post( '/member/update', 'TopController@updateMember' );
-
+    Route::group( [ 'prefix' => 'member' ], function()
+    {
+        Route::get( 'select', 'TopController@selectMember' );
+        Route::post( 'select', 'TopController@selectMember' );
+        Route::post( 'update', 'TopController@updateMember' );
+    });
 });
