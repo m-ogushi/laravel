@@ -37,8 +37,8 @@ function check(){
 <div class="center-block">
 <form action="member/select" method="post"  class="first">
 <p><br>
-<input type="radio" name="already" value="1" checked> まだの人のみ
-<input type="radio" name="already" value="0"> 全員
+<input type="radio" name="already" value="0" checked> まだの人のみ
+<input type="radio" name="already" value="1"> 全員
 </p>
 <input class="btn-login center-block" type="submit" value="抽選開始"/>
 <input type="hidden" name="_token" value="{{ csrf_token() }}">

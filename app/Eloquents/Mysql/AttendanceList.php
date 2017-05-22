@@ -9,7 +9,7 @@ class AttendanceList extends Mysql
     static function decideMenber( $already )
     {
         $query = self::take(1)->orderByRaw( 'RAND()' );
-        if( $already == 1 ){
+        if( $already == 0 ){
             return $query->where( 'end', 0 )->get();
         }
         return $query->get();
