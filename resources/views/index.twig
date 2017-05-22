@@ -1,3 +1,6 @@
+<link href="/css/app.css" rel="stylesheet">  
+<link href="/css/form.css" rel="stylesheet">  
+
 {% if session( 'endreset' ) is not null %}
     {% set doreset = 1 %}
 {% else %} 
@@ -31,12 +34,13 @@ function check(){
 
 {% endblock %}  
 </script>
+<div class="center-block">
 <form action="member/select" method="post">
 <p><br>
 <input type="radio" name="already" value="1" checked> まだの人のみ
 <input type="radio" name="already" value="0"> 全員
 </p>
-<input class="btn-login" type="submit" value="抽選開始"/>
+<input class="btn-login center-block" type="submit" value="抽選開始"/>
 <input type="hidden" name="_token" value="{{ csrf_token() }}">
 </form>
 <ul>
@@ -54,3 +58,4 @@ function check(){
 <input type="hidden" name="_token" value="{{ csrf_token() }}">
 <input type="hidden" name="logout" value="logout" > 
 </form>
+</div>

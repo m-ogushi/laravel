@@ -1,3 +1,6 @@
+<link href="/css/app.css" rel="stylesheet">                                 
+<link href="/css/form.css" rel="stylesheet">
+
 <script>
 //「スピーチする」が連続クリックされた際に、複数回カウントされないための記述
 var set=0;
@@ -14,7 +17,7 @@ function double()
     }
 }
 </script>
-
+<div class="center-block">
 <form action="select" method="post">
 <p><br>
 <input type="radio" name="already" value="1" checked> まだの人のみ
@@ -66,3 +69,4 @@ function double()
  <input class="btn-login" name= "logout" type="submit" value="ログアウト"/>
 <input type="hidden" name="_token" value="{{ csrf_token() }}">
 </form>
+</div>
