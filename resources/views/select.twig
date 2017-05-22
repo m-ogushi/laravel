@@ -20,8 +20,8 @@ function double()
 <div class="center-block">
 <form action="select" method="post" class="first">
 <p><br>
-<input type="radio" name="already" value="1" checked> まだの人のみ
-<input type="radio" name="already" value="0"> 全員
+<input type="radio" name="already" value="1" {% if already != 0 %} checked{%     endif %}> まだの人のみ
+<input type="radio" name="already" value="0" {% if already == 0 %} checked{%         endif %}> 全員
 </p>
 <input class="btn-login" type="submit" value="抽選開始"/>
 <input type="hidden" name="_token" value="{{ csrf_token() }}">

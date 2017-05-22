@@ -9,7 +9,8 @@ use App\Http\Controllers\Controller as CommonController;
 
 class TopController extends CommonController
 { 
-    /** * コンストラクタ *
+    /** 
+     * コンストラクタ
      * @param void
      * @return void
      */
@@ -39,7 +40,7 @@ class TopController extends CommonController
         {
             $already = $request->input( 'already' );
             $users =  AttendanceList::decideMenber( $already ); 
-            return view( 'select', [ 'users' => $users ] );
+            return view( 'select', [ 'users' => $users, 'already' => $already ] );
         }
         else if( null !== $request->session()->get( 'statusid' ) )
         { 
