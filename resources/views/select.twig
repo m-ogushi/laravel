@@ -18,7 +18,7 @@ function double()
 }
 </script>
 <div class="center-block">
-<form action="select" method="post">
+<form action="select" method="post" class="first">
 <p><br>
 <input type="radio" name="already" value="1" checked> まだの人のみ
 <input type="radio" name="already" value="0"> 全員
@@ -49,6 +49,7 @@ function double()
     {% set who = session( 'statusname' ) %}
     {% set cancel = 1 %}
 {% endif %}
+<div class="speechinfo">
 {{ who }}
 <br/>
 {{ nowspeech }}
@@ -56,15 +57,16 @@ function double()
 {% if end is not null  %}
     {{ '現在' ~ end ~ "回" }}
 {% endif %}
-
-<form action="update" method="post" onSubmit="return double()" >
+</div>
+<form action="update" method="post" onSubmit="return double()"  class="second" >
 <input class="btn-login" type="submit" value= {{ message }} />
 <input type="hidden" name="cancel" value="{{ cancel }}">
 <input type="hidden" name="memberId" value="{{ id }}">
 <input type="hidden" name="membername" value="{{ who }}">
 <input type="hidden" name="_token" value="{{ csrf_token() }}">
 </form>
-
+</div>
+<div class="logout">
 <form action="/" method="post">
  <input class="btn-login" name= "logout" type="submit" value="ログアウト"/>
 <input type="hidden" name="_token" value="{{ csrf_token() }}">

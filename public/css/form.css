@@ -2,10 +2,27 @@
 max-width: 350px;
 over-flow :hidden;
 text-align:center;
+top:5%;
+position:relative;
+}
+.logout{
+position:absolute;
+right:10%;
+top:5%;
+}
+.first{
 
 }
 
+.second{
+margin-top:20%;
+}
 
+.speechinfo{
+position:absolute;
+text-align:center;
+width:100%;
+}
 .loginmodal-container {
   padding: 30px;
   max-width: 350px;

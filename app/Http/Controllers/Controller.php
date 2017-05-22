@@ -90,7 +90,10 @@ class Controller extends BaseController
     {
         if ( self::isLogin() )
         {
-            return redirect( '/' );
+            echo "ara";
+            //return redirect( '/' );
+            
+            //return redirect::to( '/' );
         }
     }
 }

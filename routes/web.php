@@ -14,9 +14,23 @@ Route::group( [ 'namespace' => 'Web' ], function()
 {
     Route::group( [ 'namespace' => 'Authority' ], function()
     {
+        /*
+        Route::get('profile', function() {
+        Route::get( '/', 'TopController@index' );
+        })->middleware('auth');
+        */
+
         // ログイン
         Route::get( 'login',  'AuthController@signIn' );
         Route::post( 'login', 'AuthController@signIn' );
+
+        /*Route::filter('login', function() {
+            if (Auth::check()) {
+                return Redirect::to('/');
+            }
+        });
+        */
+
         // ログアウト
         Route::get( 'logout', 'AuthController@signOut' );
     });
