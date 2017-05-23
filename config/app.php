@@ -38,7 +38,7 @@ return [
     |
     */
 
-    'debug' => env('APP_DEBUG', false),
+    'debug' => env('APP_DEBUG', true),
 
     /*
     |--------------------------------------------------------------------------
@@ -179,6 +179,8 @@ return [
         App\Providers\RouteServiceProvider::class,
         TwigBridge\ServiceProvider::class,
         App\Providers\ValidatorServiceProvider::class,
+        //barryvdh/laravel-debugbar
+        Barryvdh\Debugbar\ServiceProvider::class,
     ],
 
     /*
@@ -226,6 +228,8 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'Twig' => TwigBridge\Facade\Twig::class,
+        //barryvdh/laravel-debugbar
+        'Debugbar' => Barryvdh\Debugbar\Facade::class,
   ],
 
 ];
