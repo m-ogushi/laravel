@@ -10,14 +10,14 @@ class AuthController extends CommonController
     const SESSID = 'auth_redirect_url';
 
             // バリデーションのルール
-    public $validateRules = [
+    /*public $validateRules = [
         'alpha_num'=>'alpha_num_check',
     ];
     public $validateMessages = [
         'alpha_check'=>'半角英字で入力してください。',
         'alpha_num_check'=>'半角英数字で入力してください。',
         'alpha_dash_check'=>'半角英数字と-_で入力してください。'
-    ];
+    ];*/
     public function signIn( Request $request )
     {
         // ログインチェック
@@ -28,6 +28,16 @@ class AuthController extends CommonController
         $message = NULL;
         if ( $mode == 'login' )
         {
+            /*// バリデーションのルール
+            $validateRules = [
+                'name' => 'required|max:50',
+                'password' => 'required|max:50',
+    ];
+            
+            public $validateMessages = [
+                'required' => 'ユーザ名とパスワードを入力してください',
+                'max' => '50文字以内で入力してください'
+            ];*/
             $validatorempty = Validator::make($request->all(), 
             [
                 'name' => 'required',
@@ -39,6 +49,11 @@ class AuthController extends CommonController
                 'name' => 'max:50',
                 'password' => 'max:50',
             ]);
+            $validatorhalfwidth = Validator::make($request->all(), 
+            [
+                'name' => 'alnum',           
+            ]
+            );
 
             if ($validatorempty->fails()) 
             {
@@ -48,19 +63,27 @@ class AuthController extends CommonController
             {
                 $message = "50文字以下で入力してください";
             }
-
-            /*$validatorhalfwidth = Validator::make($request->all(), 
-            [
-                'alpha_num_check' => trim($request->get('alpha_num_check')),           
-            ]
-            );
-            if ($validatorhalfwidth->fails()) 
+            else if ($validatorhalfwidth->fails()) 
             {
-                echo "半角で入れて";
+                $message = "ユーザ名は半角英数字で入力してください";
             }
+            /*
             logger($validatorhalfwidth); 
             */
-            if ( self::login( $request->all() ) )
+
+            /*$val = validator::make(
+                $request->all(),
+                $this->validateRules,
+                $message->validateMessages
+            );
+            
+            //バリデーションNGの場合
+            if($val->fails()){
+                return redirect('')->withErrors( $message );
+            }*/
+
+            
+            else if ( self::login( $request->all() ) )
             {
                 $url = $request->session()->has( self::SESSID ) ?
                     urldecode( $request->session()->get( self::SESSID ) ) : '/';

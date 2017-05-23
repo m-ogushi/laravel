@@ -25,7 +25,7 @@ return [
     |
     */
 
-    'env' => env('APP_ENV', 'production'),
+    'env' => env('APP_ENV', 'local'),
 
     /*
     |--------------------------------------------------------------------------
@@ -178,6 +178,9 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         TwigBridge\ServiceProvider::class,
+        /*
+         * CustomValidator
+         */
         App\Providers\ValidatorServiceProvider::class,
         //barryvdh/laravel-debugbar
         Barryvdh\Debugbar\ServiceProvider::class,
