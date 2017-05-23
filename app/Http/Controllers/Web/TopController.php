@@ -8,8 +8,8 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller as CommonController;
 
 class TopController extends CommonController
-{ 
-    /** 
+{
+    /**
      * コンストラクタ
      * @param void
      * @return void
@@ -38,7 +38,13 @@ class TopController extends CommonController
         if( null !== $request->input( 'already' ) )
         {
             $already = $request->input( 'already' );
-            $users =  AttendanceList::decideMenber( $already ); 
+            $users =  AttendanceList::decideMenber( $already );
+            
+            if( !( $users->count()) ) 
+            {
+                //全員がスピーチ済でスピーチ者を決められない場合、その旨を表示する
+                return redirect("/")->with( 'info',"全員がスピーチ済です" );
+            } 
             return view( 'select', [ 'users' => $users, 'already' => $already ] );
         }
         else if( null !== $request->session()->get( 'statusid' ) )
@@ -61,7 +67,6 @@ class TopController extends CommonController
         {
             AttendanceList::resetMember();
             return redirect( '/' )->with( 'endreset',1 );
-
         }
 
         //「キャンセル」が押されたあとの処理

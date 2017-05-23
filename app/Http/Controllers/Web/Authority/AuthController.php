@@ -13,7 +13,7 @@ class AuthController extends CommonController
     public $validateRules = [
         'alpha_num'=>'alpha_num_check',
     ];
-        public $validateMessages = [
+    public $validateMessages = [
         'alpha_check'=>'半角英字で入力してください。',
         'alpha_num_check'=>'半角英数字で入力してください。',
         'alpha_dash_check'=>'半角英数字と-_で入力してください。'
@@ -63,7 +63,7 @@ class AuthController extends CommonController
             if ( self::login( $request->all() ) )
             {
                 $url = $request->session()->has( self::SESSID ) ?
-                       urldecode( $request->session()->get( self::SESSID ) ) : '/';
+                    urldecode( $request->session()->get( self::SESSID ) ) : '/';
                 $request->session()->forget( self::SESSID );
                 return redirect( $url );
             }
@@ -90,5 +90,5 @@ class AuthController extends CommonController
     {
         self::logout();
         return redirect( 'login' );
-    } 
+    }
 }

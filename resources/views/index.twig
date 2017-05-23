@@ -43,11 +43,16 @@ function check(){
 <input class="btn-login center-block" type="submit" value="抽選開始"/>
 <input type="hidden" name="_token" value="{{ csrf_token() }}">
 </form>
+
+<div class="speechinfo">
 <ul>
 {% for item in users %}
     <li>{{ item.name }}</li>
 {% endfor %}
 </ul>
+{{ session('info') }}
+</div>
+
 <form action="member/update" method="post" class="second"  onSubmit="return check()" >
 <input class="btn-login" type="submit" value="履歴リセット"/>
 <input type="hidden" name="_token" value="{{ csrf_token() }}">
