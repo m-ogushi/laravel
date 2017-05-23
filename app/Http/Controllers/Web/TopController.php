@@ -30,7 +30,6 @@ class TopController extends CommonController
         
         // ログインチェック
         self::isNotLoginRedirect();
-
         return view( 'index', [] );
     }
     public function selectMember( Request $request )
