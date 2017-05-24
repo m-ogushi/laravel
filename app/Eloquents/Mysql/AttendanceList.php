@@ -9,7 +9,7 @@ class AttendanceList extends Mysql
     static function decideMenber( $already )
     {
         $query = self::take(1)->orderByRaw( 'RAND()' );
-        if ( $already == 0 )
+        if ( 0 == $already )
         {
             return $query->where( 'end', 0 )->get();
         }
@@ -19,7 +19,7 @@ class AttendanceList extends Mysql
 
     static function confirmMember( $id, $cancel )
     {
-        if ( $cancel == 1 )
+        if ( 1 == $cancel )
         {
             Self::where( 'id', '=', $id )->decrement( 'end', 1 );
         }
