@@ -1,19 +1,74 @@
-ログインしたトップページ
+<link href="/css/app.css" rel="stylesheet">                                 
+<link href="/css/form.css" rel="stylesheet">
 
-<form action="" method="post">
-<input class="btn-login" type="submit" value="社員情報取得"/></a>
+<script>
+//「スピーチする」が連続クリックされた際に、複数回カウントされないための記述
+var set=0;
+function double() 
+{
+    if(set==0)
+    { 
+        set=1; 
+    }
+    else 
+    {
+        alert("只今処理中です。\nそのままお待ちください。");
+        return false; 
+    }
+}
+</script>
+<div class="center-block">
+<form action="select" method="post" class="first">
+<p><br>
+<input type="radio" name="already" value="0" {% if already != 1 %} checked{%     endif %}> まだの人のみ
+<input type="radio" name="already" value="1" {% if already == 1 %} checked{%         endif %}> 全員
+</p>
+<input class="btn-login" type="submit" value="抽選開始"/>
 <input type="hidden" name="_token" value="{{ csrf_token() }}">
 </form>
 <ul>
 {% set name = [] %}
+
+{# 抽選した人の名前やスピーチ情報などを変数に格納している。 #}
 {% for item in users %}
-{% set name = item %}
-{{ name.name }}
+    {% set name = item %}
 {% endfor %}
+
+{% set id = name.id %}
+{% set who = name.name %}
+{% set end = name.end %}
+{% set cancel = 0 %}
 </ul>
-{{ name.id }}
-<form action="update" method="post">
-<input class="btn-login" type="submit" value="社員情報更新"/></a>
-<input type="hidden" name="memberId" value="{{ name.id }}">
+ {% set message = "スピーチする" %}
+
+{# 「スピーチする」が押された後の処理。キャンセルできるようにするため、必要な情報を変数に格納している。 #}
+{% if session( 'statusname' ) is not null %}
+    {% set message = "キャンセル" %}
+    {% set nowspeech = "スピーチ中!" %}
+    {% set id = session( 'statusid' ) %}
+    {% set who = session( 'statusname' ) %}
+    {% set cancel = 1 %}
+{% endif %}
+<div class="speechinfo">
+{{ who }}
+<br/>
+{{ nowspeech }}
+
+{% if end is not null  %}
+    {{ '現在' ~ end ~ "回" }}
+{% endif %}
+</div>
+<form action="update" method="post" onSubmit="return double()"  class="second" >
+<input class="btn-login" type="submit" value= {{ message }} />
+<input type="hidden" name="cancel" value="{{ cancel }}">
+<input type="hidden" name="memberId" value="{{ id }}">
+<input type="hidden" name="membername" value="{{ who }}">
 <input type="hidden" name="_token" value="{{ csrf_token() }}">
 </form>
+</div>
+<div class="logout">
+<form action="/" method="post">
+<input class="btn-login" name= "logout" type="submit" value="ログアウト"/>
+<input type="hidden" name="_token" value="{{ csrf_token() }}">
+</form>
+</div>

@@ -1,13 +1,65 @@
-ログインしたトップページ
+<link href="/css/app.css" rel="stylesheet">  
+<link href="/css/form.css" rel="stylesheet">  
 
-<form action="member/select" method="post">
-<input class="btn-login" type="submit" value="社員情報取得"/></a>
+{% if session( 'endreset' ) is not null %}
+    {% set doreset = 1 %}
+{% else %} 
+    {% set doreset = 0 %}
+{% endif %}
+
+{% block myJavascript %}
+<script type="text/javascript">
+
+window.onload = function(){
+    if( 1 == {{ doreset }} )
+    {
+        alert('リセットしました');
+    }
+}
+
+function check(){
+
+    if(window.confirm('履歴をリセットしますか？'))
+    {
+        return true; 
+    }
+    else
+    { // 「キャンセル」時の処理
+        return false; // 送信を中止
+    }
+}
+
+{% endblock %}  
+</script>
+<div class="center-block">
+<form action="member/select" method="post"  class="first">
+<p><br>
+<input type="radio" name="already" value="0" checked> まだの人のみ
+<input type="radio" name="already" value="1"> 全員
+</p>
+<input class="btn-login center-block" type="submit" value="抽選開始"/>
 <input type="hidden" name="_token" value="{{ csrf_token() }}">
 </form>
-<ul>
+
+<div class="speechinfo">
 <ul>
 {% for item in users %}
-<li>{{ item.name }}</li>
+    <li>{{ item.name }}</li>
 {% endfor %}
 </ul>
-</ul>
+{{ session('info') }}
+</div>
+
+<form action="member/update" method="post" class="second"  onSubmit="return check()" >
+<input class="btn-login" type="submit" value="履歴リセット"/>
+<input type="hidden" name="_token" value="{{ csrf_token() }}">
+</form>
+</div>
+<div class="logout">
+<form action="/" method="post">
+<input class="btn-login" type="submit" value="ログアウト"/>
+<input type="hidden" name="_token" value="{{ csrf_token() }}">
+<input type="hidden" name="logout" value="logout" > 
+</form>
+</div>
+

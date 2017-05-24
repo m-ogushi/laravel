@@ -11,8 +11,8 @@ class Login extends Authenticatable
 
     protected $table = 'login';
 
-    const CREATED_AT = 'regist_user_date';
-    const UPDATED_AT = 'update_user_date';
+    const CREATED_AT = 'regist_date';
+    const UPDATED_AT = 'update_date';
 
     public $timestamps = TRUE;
 
@@ -48,6 +48,6 @@ class Login extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token',
+        'remember_token',
     ];
 }

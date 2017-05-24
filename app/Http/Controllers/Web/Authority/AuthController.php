@@ -1,6 +1,7 @@
 <?php
 namespace App\Http\Controllers\Web\Authority;
 
+use Validator;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller as CommonController;
 
@@ -18,14 +19,47 @@ class AuthController extends CommonController
         $message = NULL;
         if ( $mode == 'login' )
         {
-            if ( self::login( $request->all() ) )
+            $validatorempty = Validator::make( $request->all(), 
+            [
+                'name' => 'required',
+                'password' => 'required',
+            ]);
+
+            $validatormuch = Validator::make( $request->all(), 
+            [
+                'name' => 'max:50',
+                'password' => 'max:50',
+            ]);
+
+            $validatorhalfwidth = Validator::make( $request->all(), 
+            [
+                'name' => 'alnum',           
+            ]);
+
+            if ( $validatorempty->fails() ) 
+            {
+                $message = "ユーザ名とパスワードを入力してください";
+            }
+            else if ( $validatormuch->fails() )
+            {
+                $message = "50文字以下で入力してください";
+            }
+            else if ( $validatorhalfwidth->fails() ) 
+            {
+                $message = "ユーザ名は半角英数字で入力してください";
+            }
+            
+            else if ( self::login( $request->all() ) )
             {
                 $url = $request->session()->has( self::SESSID ) ?
-                       urldecode( $request->session()->get( self::SESSID ) ) : '/';
+                urldecode( $request->session()->get( self::SESSID ) ) : '/';
                 $request->session()->forget( self::SESSID );
                 return redirect( $url );
             }
-            $message = "メールアドレス又はパスワードが間違っています";
+            if ( !isset( $message ) )
+            {
+                $message = "メールアドレス又はパスワードが間違っています";
+            }
         }
         else
         {
@@ -33,10 +67,10 @@ class AuthController extends CommonController
         }
 
         return view( 'login',
-                     [
-                         'time'    => time(),
-                         'message' => $message,
-                     ]
+                   [
+                       'time'    => time(),
+                       'message' => $message,
+                   ]
                    );
     }
 

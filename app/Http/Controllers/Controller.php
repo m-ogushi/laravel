@@ -90,7 +90,9 @@ class Controller extends BaseController
     {
         if ( self::isLogin() )
         {
-            return redirect( '/' );
+            //関数の中で、直接トップページへ遷移させる
+            header( 'location: /' );
+            exit;
         }
     }
 }
