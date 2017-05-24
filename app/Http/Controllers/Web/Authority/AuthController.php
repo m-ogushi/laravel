@@ -30,11 +30,11 @@ class AuthController extends CommonController
                 'name' => 'max:50',
                 'password' => 'max:50',
             ]);
+
             $validatorhalfwidth = Validator::make( $request->all(), 
             [
                 'name' => 'alnum',           
-            ]
-            );
+            ]);
 
             if ( $validatorempty->fails() ) 
             {
@@ -67,10 +67,10 @@ class AuthController extends CommonController
         }
 
         return view( 'login',
-                       [
-                           'time'    => time(),
-                           'message' => $message,
-                       ]
+                   [
+                       'time'    => time(),
+                       'message' => $message,
+                   ]
                    );
     }
 

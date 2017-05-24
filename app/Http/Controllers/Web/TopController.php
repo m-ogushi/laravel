@@ -21,8 +21,7 @@ class TopController extends CommonController
 
     public function index( Request $request )
     {
-
-        if ( null !==  $request->input( 'logout' ) )
+        if ( NULL !==  $request->input( 'logout' ) )
         {
             self::logout();
             return redirect( 'login' );
@@ -35,7 +34,7 @@ class TopController extends CommonController
     public function selectMember( Request $request )
     {
         //抽選条件が選択されているかどうかで、抽選処理を行うかどうかを判断する
-        if ( null !== $request->input( 'already' ) )
+        if ( NULL !== $request->input( 'already' ) )
         {
             $already = $request->input( 'already' );
             $users =  AttendanceList::decideMenber( $already );
@@ -43,12 +42,11 @@ class TopController extends CommonController
             if ( !( $users->count() ) )
             {
                 //全員がスピーチ済でスピーチ者を決められない場合、その旨を表示する
-                return redirect("/")->with( 'info',"全員がスピーチ済です" );
-                                   // with( 'info',"全員がスピーチ済です" );
+                return redirect("/")->with( 'info', "全員がスピーチ済です" );
             } 
             return view( 'select', [ 'users' => $users, 'already' => $already ] );
         }
-        else if ( null !== $request->session()->get( 'statusid' ) )
+        else if ( NULL !== $request->session()->get( 'statusid' ) )
         { 
             return view( 'select' );
         }
@@ -64,13 +62,13 @@ class TopController extends CommonController
         $input = $request->all(); 
 
         //「リセット」が押された後の処理
-        if ( $request->input( 'memberId' ) == NULL )
+        if ( NULL == $request->input( 'memberId' ) )
         {
             AttendanceList::resetMember();
-            return redirect( '/' )->with( 'endreset',1 );
+            return redirect( '/' )->with( 'endreset', 1 );
         }
 
-        //「キャンセル」が押されたあとの処理
+        //「スピーチする」または「キャンセル」が押されたあとの処理
         $id = $request->input( 'memberId' );
         $cancel = $request->input( 'cancel' );
         
@@ -88,6 +86,8 @@ class TopController extends CommonController
         }
         
         //「スピーチをする」の場合、キャンセルできるようにするために、セッションに氏名とID情報を保存する
-        return redirect( 'member/select' )->with( 'statusname', $request->input( 'membername' ) )->with( 'statusid', $request->input( 'memberId' ) );
+        return redirect( 'member/select' )
+        ->with( 'statusname', $request->input( 'membername' ) )
+        ->with( 'statusid', $request->input( 'memberId' ) );
     } 
 }
