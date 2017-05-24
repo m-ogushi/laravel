@@ -67,10 +67,10 @@ class AuthController extends CommonController
         }
 
         return view( 'login',
-                   [
-                       'time'    => time(),
-                       'message' => $message,
-                   ]
+                     [
+                         'time'    => time(),
+                         'message' => $message,
+                     ]
                    );
     }
 

@@ -33,6 +33,10 @@ class TopController extends CommonController
     }
     public function selectMember( Request $request )
     {
+        
+        // ログインチェック
+        self::isNotLoginRedirect();
+        
         //抽選条件が選択されているかどうかで、抽選処理を行うかどうかを判断する
         if ( NULL !== $request->input( 'already' ) )
         {
@@ -58,7 +62,7 @@ class TopController extends CommonController
     }
     public function updateMember( Request $request )
     {
-        //現在実装中
+
         $input = $request->all(); 
 
         //「リセット」が押された後の処理
