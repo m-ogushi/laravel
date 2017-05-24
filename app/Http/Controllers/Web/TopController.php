@@ -42,7 +42,7 @@ class TopController extends CommonController
             if ( !( $users->count() ) )
             {
                 //全員がスピーチ済でスピーチ者を決められない場合、その旨を表示する
-                return redirect("/")->with( 'info', "全員がスピーチ済です" );
+                return redirect( '/' )->with( 'info', '全員がスピーチ済です' );
             } 
             return view( 'select', [ 'users' => $users, 'already' => $already ] );
         }
