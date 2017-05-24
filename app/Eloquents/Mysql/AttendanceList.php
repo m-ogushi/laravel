@@ -17,7 +17,7 @@ class AttendanceList extends Mysql
     }
 
 
-    static function confirmMember( $id, $cancel )
+    static function confirmMember( $id, $cancel = 0 )
     {
         if ( 1 == $cancel )
         {
@@ -33,6 +33,6 @@ class AttendanceList extends Mysql
     static function resetMember()
     {
         //現在実装中
-        Self::where( 'end', '<>', 0 )->update( [ 'end'=> 0 ] );
+        Self::where( 'end', '<>', 0 )->update( [ 'end' => 0 ] );
     }
 }
