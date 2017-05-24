@@ -93,7 +93,6 @@ class Controller extends BaseController
             //関数の中で、直接トップページへ遷移させる
             header( 'location: /' );
             exit;
-            
         }
     }
 }

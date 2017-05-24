@@ -22,7 +22,7 @@ class TopController extends CommonController
     public function index( Request $request )
     {
 
-        if( null !==  $request->input( 'logout' ) )
+        if ( null !==  $request->input( 'logout' ) )
         {
             self::logout();
             return redirect( 'login' );
@@ -35,19 +35,20 @@ class TopController extends CommonController
     public function selectMember( Request $request )
     {
         //抽選条件が選択されているかどうかで、抽選処理を行うかどうかを判断する
-        if( null !== $request->input( 'already' ) )
+        if ( null !== $request->input( 'already' ) )
         {
             $already = $request->input( 'already' );
             $users =  AttendanceList::decideMenber( $already );
             
-            if( !( $users->count()) ) 
+            if ( !( $users->count() ) )
             {
                 //全員がスピーチ済でスピーチ者を決められない場合、その旨を表示する
                 return redirect("/")->with( 'info',"全員がスピーチ済です" );
+                                   // with( 'info',"全員がスピーチ済です" );
             } 
             return view( 'select', [ 'users' => $users, 'already' => $already ] );
         }
-        else if( null !== $request->session()->get( 'statusid' ) )
+        else if ( null !== $request->session()->get( 'statusid' ) )
         { 
             return view( 'select' );
         }
@@ -63,7 +64,7 @@ class TopController extends CommonController
         $input = $request->all(); 
 
         //「リセット」が押された後の処理
-        if( $request->input( 'memberId' ) == NULL )
+        if ( $request->input( 'memberId' ) == NULL )
         {
             AttendanceList::resetMember();
             return redirect( '/' )->with( 'endreset',1 );
@@ -81,7 +82,7 @@ class TopController extends CommonController
         $users =  AttendanceList::confirmMember( $id,$cancel );
         
         //「キャンセル」の場合、トップ画面に遷移する
-        if( $request->input( 'cancel' ) == 1 )
+        if ( $request->input( 'cancel' ) == 1 )
         {
             return redirect( '/' );
         }

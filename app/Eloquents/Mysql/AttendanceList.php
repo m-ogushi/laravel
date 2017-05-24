@@ -9,7 +9,8 @@ class AttendanceList extends Mysql
     static function decideMenber( $already )
     {
         $query = self::take(1)->orderByRaw( 'RAND()' );
-        if( $already == 0 ){
+        if ( $already == 0 )
+        {
             return $query->where( 'end', 0 )->get();
         }
         return $query->get();
@@ -18,10 +19,11 @@ class AttendanceList extends Mysql
 
     static function confirmMember( $id,$cancel )
     {
-        if( $cancel == 1 )
+        if ( $cancel == 1 )
         {
             Self::where( 'id','=',$id )->decrement( 'end',1 );
-        }else
+        }
+        else
         {
             Self::where( 'id','=',$id )->increment( 'end',1 );
         }
@@ -31,6 +33,6 @@ class AttendanceList extends Mysql
     static function resetMember()
     {
         //現在実装中
-        Self::where( 'end', "<>" ,0 )->update( [ 'end'=>0 ] );
+        Self::where( 'end', "<>", 0 )->update( [ 'end'=>0 ] );
     }
 }
