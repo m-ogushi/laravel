@@ -21,11 +21,11 @@ class AttendanceList extends Mysql
     {
         if ( $cancel == 1 )
         {
-            Self::where( 'id','=', $id )->decrement( 'end',1 );
+            Self::where( 'id', '=' , $id )->decrement( 'end',1 );
         }
         else
         {
-            Self::where( 'id','=', $id )->increment( 'end',1 );
+            Self::where( 'id', '=' , $id )->increment( 'end',1 );
         }
     }
     
@@ -33,6 +33,6 @@ class AttendanceList extends Mysql
     static function resetMember()
     {
         //現在実装中
-        Self::where( 'end', "<>", 0 )->update( [ 'end'=>0 ] );
+        Self::where( 'end', "<>" , 0 )->update( [ 'end'=>0 ] );
     }
 }

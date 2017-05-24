@@ -19,16 +19,6 @@ class AuthController extends CommonController
         $message = NULL;
         if ( $mode == 'login' )
         {
-            /*// コンパクトな書き方のテスト中
-            $validateRules = [
-                'name' => 'required|max:50',
-                'password' => 'required|max:50',
-            ];
-            
-            public $validateMessages = [
-                'required' => 'ユーザ名とパスワードを入力してください',
-                'max' => '50文字以内で入力してください'
-            ];*/
             $validatorempty = Validator::make( $request->all(), 
             [
                 'name' => 'required',
@@ -58,21 +48,6 @@ class AuthController extends CommonController
             {
                 $message = "ユーザ名は半角英数字で入力してください";
             }
-            /*
-            logger($validatorhalfwidth); 
-            */
-
-            /*$val = validator::make(
-                $request->all(),
-                $this->validateRules,
-                $message->validateMessages
-            );
-            
-            //バリデーションNGの場合
-            if ($val->fails()){
-                return redirect('')->withErrors( $message );
-            }*/
-
             
             else if ( self::login( $request->all() ) )
             {
