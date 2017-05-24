@@ -17,15 +17,15 @@ class AttendanceList extends Mysql
     }
 
 
-    static function confirmMember( $id,$cancel )
+    static function confirmMember( $id, $cancel )
     {
         if ( $cancel == 1 )
         {
-            Self::where( 'id','=',$id )->decrement( 'end',1 );
+            Self::where( 'id','=', $id )->decrement( 'end',1 );
         }
         else
         {
-            Self::where( 'id','=',$id )->increment( 'end',1 );
+            Self::where( 'id','=', $id )->increment( 'end',1 );
         }
     }
     

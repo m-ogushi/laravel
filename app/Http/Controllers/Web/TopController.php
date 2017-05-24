@@ -79,7 +79,7 @@ class TopController extends CommonController
         「スピーチする」が押された:0
         「キャンセル」が押された:1
         */
-        $users =  AttendanceList::confirmMember( $id,$cancel );
+        $users =  AttendanceList::confirmMember( $id, $cancel );
         
         //「キャンセル」の場合、トップ画面に遷移する
         if ( $request->input( 'cancel' ) == 1 )
