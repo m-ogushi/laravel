@@ -1,12 +1,6 @@
-<html>
- <head>
-<!-- CSRF Token -->
-<meta name="csrf-token" content="{{ csrf_token() }}">
-<meta name="viewport" content="width=device-width" >
-<link href="/css/app.css" rel="stylesheet">
-<link href="/css/form.css" rel="stylesheet">
-</head>
-<body>
+{% extends 'choice/choice.twig' %}   
+
+{% block body %}
 <div class="loginmodal-container">
 <h1>朝会スピーチ　抽選</h1><br>
 <form action="" method="post">
@@ -24,5 +18,4 @@
 <input name="login" class="btn-login loginmodal-submit" type="submit" value="ログイン"/></a>
 </form>
 </div>
-</body>
-</html>
+{% endblock %}
