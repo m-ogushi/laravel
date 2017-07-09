@@ -1,7 +1,6 @@
-<link href="/css/app.css" rel="stylesheet">                                 
-<link href="/css/form.css" rel="stylesheet">
+{% extends 'choice/choice.twig' %}   
 
-<script>
+{% block myJavascript %}
 //「スピーチする」が連続クリックされた際に、複数回カウントされないための記述
 var set=0;
 function double() 
@@ -16,7 +15,9 @@ function double()
         return false; 
     }
 }
-</script>
+{% endblock %}
+
+{% block body %}
 <div class="center-block">
 <form action="select" method="post" class="first">
 <p><br>
@@ -72,3 +73,4 @@ function double()
 <input type="hidden" name="_token" value="{{ csrf_token() }}">
 </form>
 </div>
+{% endblock %} 

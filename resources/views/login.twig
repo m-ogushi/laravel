@@ -1,15 +1,6 @@
- <head>
-<!-- CSRF Token -->
-<meta name="csrf-token" content="{{ csrf_token() }}">
-<link href="/css/app.css" rel="stylesheet">
-<link href="/css/form.css" rel="stylesheet">
-<!-- Scripts -->
-<script>
-//    window.Laravel = <?php echo json_encode([
-//        'csrfToken' => csrf_token(),
-//    ]); ?>
-</script>
-</head>
+{% extends 'choice/choice.twig' %}   
+
+{% block body %}
 <div class="loginmodal-container">
 <h1>朝会スピーチ　抽選</h1><br>
 <form action="" method="post">
@@ -27,3 +18,4 @@
 <input name="login" class="btn-login loginmodal-submit" type="submit" value="ログイン"/></a>
 </form>
 </div>
+{% endblock %}

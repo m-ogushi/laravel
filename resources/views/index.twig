@@ -1,14 +1,11 @@
-<link href="/css/app.css" rel="stylesheet">  
-<link href="/css/form.css" rel="stylesheet">  
+{% extends 'choice/choice.twig' %}   
 
+{% block myJavascript %}
 {% if session( 'endreset' ) is not null %}
     {% set doreset = 1 %}
 {% else %} 
     {% set doreset = 0 %}
 {% endif %}
-
-{% block myJavascript %}
-<script type="text/javascript">
 
 window.onload = function(){
     if( 1 == {{ doreset }} )
@@ -30,7 +27,8 @@ function check(){
 }
 
 {% endblock %}  
-</script>
+
+{% block body %}
 <div class="center-block">
 <form action="member/select" method="post"  class="first">
 <p><br>
@@ -62,4 +60,4 @@ function check(){
 <input type="hidden" name="logout" value="logout" > 
 </form>
 </div>
-
+{% endblock %}
